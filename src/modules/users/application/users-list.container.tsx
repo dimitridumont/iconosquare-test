@@ -3,10 +3,14 @@ import { getUsersList } from "@/modules/users/domain/users.actions"
 import { outputs } from "@/config/outputs"
 import { User } from "@/types/user"
 import { UsersListView } from "@/modules/users/application/users-list.view"
+import { RequestStatus } from "@/types/request-status"
 
 export const UsersListContainer = () => {
 	const [users, setUsers] = useState<User[]>([])
 	const [usersList, setUsersList] = useState<User[]>([])
+	const [getUsersStatus, setGetUsersStatus] = useState<RequestStatus>(
+		RequestStatus.IDLE
+	)
 
 	useEffect(() => {
 		_getUsersList()
@@ -14,14 +18,17 @@ export const UsersListContainer = () => {
 
 	const _getUsersList = async () => {
 		try {
+			setGetUsersStatus(RequestStatus.LOADING)
+
 			const users: User[] = await getUsersList({
 				usersOutput: outputs.usersOutput,
 			})
 
 			setUsers(users)
 			setUsersList(users)
+			setGetUsersStatus(RequestStatus.COMPLETED)
 		} catch (error) {
-			console.warn(error)
+			setGetUsersStatus(RequestStatus.FAILED)
 		}
 	}
 
@@ -37,5 +44,15 @@ export const UsersListContainer = () => {
 		setUsersList(filteredUsers)
 	}
 
-	return <UsersListView usersList={usersList} filterUsers={filterUsers} />
+	const thereIsNoUser: boolean =
+		getUsersStatus === RequestStatus.COMPLETED && usersList.length === 0
+
+	return (
+		<UsersListView
+			usersList={usersList}
+			filterUsers={filterUsers}
+			thereIsNoUser={thereIsNoUser}
+			getUsersStatus={getUsersStatus}
+		/>
+	)
 }
