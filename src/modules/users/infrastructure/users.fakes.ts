@@ -67,7 +67,7 @@ export const fakeUsers: User[] = [
 		company: {
 			name: "Romaguera-Jacobson",
 			catchPhrase: "Face to face bifurcated interface",
-			bs: "e-enable strategic applications",
+			bs: "e-enable strategic application",
 		},
 	},
 ]

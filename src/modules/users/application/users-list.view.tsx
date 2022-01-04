@@ -1,6 +1,6 @@
 import React from "react"
 import { User } from "@/types/user"
-import { FiltersContainer } from "@/modules/users/applications/components/filters/filters.container"
+import { FiltersContainer } from "@/modules/users/application/components/filters/filters.container"
 import { Link } from "@/components/link/link"
 
 interface Props {
@@ -48,7 +48,7 @@ export const UsersListView = ({ usersList, filterUsers }: Props) => {
 							</Link>
 						</div>
 						<div>
-							<Link href={"/"}>List posts</Link>
+							<Link href={`/users/${user.id}`}>List posts</Link>
 						</div>
 					</div>
 				))}

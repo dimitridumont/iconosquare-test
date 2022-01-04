@@ -6,4 +6,10 @@ export class UsersApi implements UsersOutput {
 	getUsersList(): Promise<User[]> {
 		return api.get("/users").then(({ data }: { data: User[] }) => data)
 	}
+
+	getUser(userID: number): Promise<User | undefined> {
+		return api
+			.get("/users/" + userID)
+			.then(({ data }: { data: User }) => data)
+	}
 }

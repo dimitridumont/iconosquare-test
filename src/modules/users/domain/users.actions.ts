@@ -11,3 +11,17 @@ export const getUsersList = async ({
 		throw new Error(error)
 	}
 }
+
+export const getUser = async ({
+	userID,
+	usersOutput,
+}: {
+	userID: number
+	usersOutput: UsersOutput
+}) => {
+	try {
+		return await usersOutput.getUser(userID)
+	} catch (error: any) {
+		throw new Error(error)
+	}
+}

@@ -1,5 +1,5 @@
 import React from "react"
-import { FiltersView } from "@/modules/users/applications/components/filters/filters.view"
+import { FiltersView } from "@/modules/users/application/components/filters/filters.view"
 
 interface Props {
 	filterUsers: (filter: string) => void

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { getUsersList } from "@/modules/users/domain/users.actions"
 import { outputs } from "@/config/outputs"
 import { User } from "@/types/user"
-import { UsersListView } from "@/modules/users/applications/users-list.view"
+import { UsersListView } from "@/modules/users/application/users-list.view"
 
 export const UsersListContainer = () => {
 	const [users, setUsers] = useState<User[]>([])
