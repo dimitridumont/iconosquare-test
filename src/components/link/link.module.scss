@@ -1,0 +1,14 @@
+@import "src/styles/variables";
+
+.container {
+  color: $blue;
+
+  &.link {}
+
+  &.button {
+    border-radius: $border-radius;
+    background-color: #0d5abf;
+    color: $white;
+    padding: 8px 12px;
+  }
+}

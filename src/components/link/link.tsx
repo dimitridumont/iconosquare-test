@@ -1,4 +1,5 @@
 import NextLink, { LinkProps } from "next/link"
+import styles from "./link.module.scss"
 
 export interface Props extends LinkProps {
 	children: any
@@ -6,6 +7,7 @@ export interface Props extends LinkProps {
 	className?: string
 	target?: string
 	rel?: string
+	variant?: "link" | "button"
 }
 
 export const Link = ({
@@ -14,11 +16,18 @@ export const Link = ({
 	className,
 	target,
 	rel,
+	variant,
 	...rest
 }: Props) => {
+	const customClassName: string =
+		styles.container +
+		" " +
+		(variant ? styles[variant] : styles.link) +
+		(className ? " " + className : "")
+
 	return (
 		<NextLink href={href} {...rest}>
-			<a className={className} target={target} rel={rel}>
+			<a className={customClassName} target={target} rel={rel}>
 				{children}
 			</a>
 		</NextLink>

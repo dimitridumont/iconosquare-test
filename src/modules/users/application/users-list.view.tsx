@@ -51,7 +51,10 @@ export const UsersListView = ({ usersList, filterUsers }: Props) => {
 									</Link>
 								</td>
 								<td>
-									<Link href={`/users/${user.id}`}>
+									<Link
+										href={`/users/${user.id}`}
+										variant={"button"}
+									>
 										List posts
 									</Link>
 								</td>
