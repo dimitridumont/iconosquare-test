@@ -1,6 +1,6 @@
 import React from "react"
 import { Post } from "@/types/post"
-import { PostContainer } from "@/modules/posts/application/components/post.container"
+import { PostContainer } from "@/modules/posts/application/components/post/post.container"
 import { User } from "@/types/user"
 
 interface Props {
