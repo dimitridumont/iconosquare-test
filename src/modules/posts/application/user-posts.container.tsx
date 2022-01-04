@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import { User } from "@/types/user"
 import { getUser } from "@/modules/users/domain/users.actions"
 import { UserPostsView } from "@/modules/posts/application/user-posts.view"
+import { RequestStatus } from "@/types/request-status"
 
 export const UserPostsContainer = () => {
 	const router = useRouter()
@@ -16,6 +17,9 @@ export const UserPostsContainer = () => {
 
 	const [posts, setPosts] = useState<Post[]>([])
 	const [user, setUser] = useState<User | undefined>(undefined)
+	const [getPostsStatus, setGetPostsStatus] = useState<RequestStatus>(
+		RequestStatus.IDLE
+	)
 
 	useEffect(() => {
 		_getUserPosts()
@@ -25,14 +29,17 @@ export const UserPostsContainer = () => {
 	const _getUserPosts = async () => {
 		if (userID) {
 			try {
+				setGetPostsStatus(RequestStatus.LOADING)
+
 				const posts: Post[] = await getUserPosts({
 					userID,
 					postsOutput: outputs.postsOutput,
 				})
 
 				setPosts(posts)
+				setGetPostsStatus(RequestStatus.COMPLETED)
 			} catch (error) {
-				console.warn(error)
+				setGetPostsStatus(RequestStatus.FAILED)
 			}
 		}
 	}
@@ -52,5 +59,15 @@ export const UserPostsContainer = () => {
 		}
 	}
 
-	return <UserPostsView user={user} posts={posts} />
+	const thereIsNoPost: boolean =
+		getPostsStatus === RequestStatus.COMPLETED && posts.length === 0
+
+	return (
+		<UserPostsView
+			user={user}
+			posts={posts}
+			thereIsNoPost={thereIsNoPost}
+			getPostsStatus={getPostsStatus}
+		/>
+	)
 }
