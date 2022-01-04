@@ -14,6 +14,8 @@ interface Props {
 	posts: Post[]
 	thereIsNoPost: boolean
 	getPostsStatus: RequestStatus
+	thereIsNoUser: boolean
+	getUserStatus: RequestStatus
 }
 
 export const UserPostsView = ({
@@ -21,15 +23,30 @@ export const UserPostsView = ({
 	posts,
 	thereIsNoPost,
 	getPostsStatus,
+	thereIsNoUser,
+	getUserStatus,
 }: Props) => {
 	const getPostsMessages: DisplayAsyncDataMessages = {
 		errorMessage: "An error occurred while retrieving user post",
 		emptyDataMessage: "There is no post",
 	}
 
+	const getUserMessages: DisplayAsyncDataMessages = {
+		errorMessage: "An error occurred while retrieving user data",
+		emptyDataMessage: "The user doesn't exist",
+	}
+
 	return (
 		<div className={styles.container}>
-			<h2 className={styles.title}>{user && `${user.name}'s posts`}</h2>
+			<DisplayAsyncData
+				status={getUserStatus}
+				thereIsNoData={thereIsNoUser}
+				messages={getUserMessages}
+			>
+				<h2 className={styles.title}>
+					{user && `${user.name}'s posts`}
+				</h2>
+			</DisplayAsyncData>
 
 			<DisplayAsyncData
 				status={getPostsStatus}

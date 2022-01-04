@@ -20,6 +20,9 @@ export const UserPostsContainer = () => {
 	const [getPostsStatus, setGetPostsStatus] = useState<RequestStatus>(
 		RequestStatus.IDLE
 	)
+	const [getUserStatus, setGetUserStatus] = useState<RequestStatus>(
+		RequestStatus.IDLE
+	)
 
 	useEffect(() => {
 		_getUserPosts()
@@ -47,14 +50,17 @@ export const UserPostsContainer = () => {
 	const _getUser = async () => {
 		if (userID) {
 			try {
+				setGetUserStatus(RequestStatus.LOADING)
+
 				const user: User | undefined = await getUser({
 					userID,
 					usersOutput: outputs.usersOutput,
 				})
 
 				setUser(user)
+				setGetUserStatus(RequestStatus.COMPLETED)
 			} catch (error) {
-				console.warn(error)
+				setGetUserStatus(RequestStatus.FAILED)
 			}
 		}
 	}
@@ -62,12 +68,17 @@ export const UserPostsContainer = () => {
 	const thereIsNoPost: boolean =
 		getPostsStatus === RequestStatus.COMPLETED && posts.length === 0
 
+	const thereIsNoUser: boolean =
+		getUserStatus === RequestStatus.COMPLETED && !user
+
 	return (
 		<UserPostsView
 			user={user}
 			posts={posts}
 			thereIsNoPost={thereIsNoPost}
 			getPostsStatus={getPostsStatus}
+			thereIsNoUser={thereIsNoUser}
+			getUserStatus={getUserStatus}
 		/>
 	)
 }
