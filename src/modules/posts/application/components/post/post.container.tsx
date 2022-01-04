@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Post } from "@/types/post"
 import { PostView } from "@/modules/posts/application/components/post/post.view"
 
@@ -7,5 +7,23 @@ interface Props {
 }
 
 export const PostContainer = ({ post }: Props) => {
-	return <PostView post={post} />
+	const [isCommentsModalVisible, setIsCommentsModalVisible] =
+		useState<boolean>(false)
+
+	const openCommentsModal = () => {
+		setIsCommentsModalVisible(true)
+	}
+
+	const closeCommentsModal = () => {
+		setIsCommentsModalVisible(false)
+	}
+
+	return (
+		<PostView
+			post={post}
+			isCommentsModalVisible={isCommentsModalVisible}
+			openCommentsModal={openCommentsModal}
+			closeCommentsModal={closeCommentsModal}
+		/>
+	)
 }
