@@ -1,0 +1,30 @@
+@import "src/styles/variables";
+
+.container {
+  .commentsNumber {
+    font-size: 18px;
+    margin-top: 24px;
+  }
+
+  .comment {
+    padding: 24px 0;
+
+    .name {
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .email {
+      margin-top: 12px;
+      text-align: right;
+
+      .emailLink {
+        color: $dark-blue;
+
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+  }
+}
