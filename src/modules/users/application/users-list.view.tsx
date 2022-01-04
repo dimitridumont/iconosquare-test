@@ -11,19 +11,6 @@ interface Props {
 export const UsersListView = ({ usersList, filterUsers }: Props) => {
 	return (
 		<>
-			<header>
-				<h1>
-					Icnonosquare - test performed by{" "}
-					<Link
-						href={"https://www.dimitri-dumont.fr"}
-						target="_blank"
-						rel="noopener, noreferrer"
-					>
-						Dimitri Dumont
-					</Link>
-				</h1>
-			</header>
-
 			<FiltersContainer filterUsers={filterUsers} />
 
 			<div>

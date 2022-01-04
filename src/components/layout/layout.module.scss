@@ -1,0 +1,26 @@
+@import "src/styles/variables";
+
+$padding: 22px 0;
+
+.container {
+  .header {
+    text-align: center;
+    background-color: $white;
+    padding: $padding;
+    box-shadow: $box-shadow;
+
+    .title {
+      font-size: 32px;
+    }
+  }
+
+  .content {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 62px 0;
+
+    @media screen and (min-width: 992px){
+      max-width: 50%;
+    }
+  }
+}
