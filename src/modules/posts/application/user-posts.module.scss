@@ -1,0 +1,16 @@
+.container {
+  .title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  .posts {
+    display: grid;
+    gap: 24px;
+
+    @media screen and (min-width: 992px){
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
