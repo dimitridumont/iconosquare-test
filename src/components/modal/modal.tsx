@@ -20,10 +20,6 @@ export const Modal = ({ children, onHide, show, title }: ModalProps) => {
 		>
 			<div className={styles.header}>
 				{title && <h2 className={styles.title}>{title}</h2>}
-
-				<div className={styles.close} onClick={onHide}>
-					X
-				</div>
 			</div>
 
 			<div className={styles.body}>{children}</div>
