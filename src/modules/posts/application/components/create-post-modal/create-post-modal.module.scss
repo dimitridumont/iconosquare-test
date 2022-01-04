@@ -1,0 +1,40 @@
+@import "src/styles/variables";
+
+.row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .label {
+    margin-bottom: 6px;
+  }
+
+  .input, .textarea {
+    width: calc(100% - 32px);
+    background-color: $white;
+    border: 1px solid $light-grey;
+    border-radius: $border-radius;
+    padding: 10px 14px;
+    color: $dark-blue;
+
+    &:focus {
+      border: 1px solid $light-grey;
+    }
+  }
+
+  .textarea {
+    resize: vertical;
+  }
+}
+
+.footer {
+  margin-top: 32px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+}

@@ -1,0 +1,17 @@
+@import "src/styles/variables";
+
+.container {
+  cursor: pointer;
+  border-radius: $border-radius;
+  padding: 12px 24px;
+  border: 1px solid $blue;
+  background-color: $blue;
+  color: $white;
+  font-weight: 600;
+
+  &.secondary {
+    border: 1px solid $dark-blue;
+    background-color: $white;
+    color: $dark-blue;
+  }
+}

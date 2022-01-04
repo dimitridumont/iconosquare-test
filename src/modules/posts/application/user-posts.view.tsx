@@ -8,6 +8,7 @@ import {
 	DisplayAsyncData,
 	DisplayAsyncDataMessages,
 } from "@/components/display-async-data/display-async-data"
+import { CreatePostModalContainer } from "@/modules/posts/application/components/create-post-modal/create-post-modal.container"
 
 interface Props {
 	user: User | undefined
@@ -46,6 +47,8 @@ export const UserPostsView = ({
 				<h2 className={styles.title}>
 					{user && `${user.name}'s posts`}
 				</h2>
+
+				<CreatePostModalContainer />
 			</DisplayAsyncData>
 
 			<DisplayAsyncData
