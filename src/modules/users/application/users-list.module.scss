@@ -30,5 +30,17 @@
     .userName, .userCity {
       font-weight: 500;
     }
+
+    .userName {
+      margin-bottom: 6px;
+    }
+
+    .userEmail {
+      color: $dark-blue;
+
+      &:hover {
+        color: $blue;
+      }
+    }
   }
 }

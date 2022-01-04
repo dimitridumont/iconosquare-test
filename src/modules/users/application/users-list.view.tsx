@@ -32,10 +32,18 @@ export const UsersListView = ({ usersList, filterUsers }: Props) => {
 									<div className={styles.userName}>
 										{user.name}
 									</div>
-									<div>{user.email}</div>
+									<div>
+										<Link
+											href={"mailto:" + user.email}
+											className={styles.userEmail}
+										>
+											{user.email}
+										</Link>
+									</div>
 								</td>
 								<td>
-									<span>{user.address.street}</span>{" "}
+									<span>{user.address.street}</span>
+									{", "}
 									<span className={styles.userCity}>
 										{user.address.city}
 									</span>
