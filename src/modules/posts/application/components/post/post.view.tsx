@@ -22,16 +22,16 @@ export const PostView = ({
 			<div onClick={openCommentsModal}>
 				<h3 className={styles.title}>{post.title}</h3>
 
-				<div className={styles.body}>{post.body}</div>
+				<div>{post.body}</div>
 			</div>
 
-			<Modal show={isCommentsModalVisible} onHide={closeCommentsModal}>
+			<Modal
+				show={isCommentsModalVisible}
+				onHide={closeCommentsModal}
+				title={post.title}
+			>
 				<>
-					<div>
-						<h3 className={styles.title}>{post.title}</h3>
-
-						<div className={styles.body}>{post.body}</div>
-					</div>
+					<div className={styles.body}>{post.body}</div>
 
 					<CommentsContainer postID={post.id} />
 				</>

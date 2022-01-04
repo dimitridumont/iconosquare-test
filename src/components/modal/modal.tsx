@@ -1,31 +1,32 @@
 import React from "react"
 import ReactModal from "react-modal"
+import styles from "./modal.module.scss"
 
 interface ModalProps {
 	title?: string
 	children: React.ReactNode
-	className?: string
 	show: boolean
 	onHide: () => void
 }
 
-export const Modal = ({
-	children,
-	className,
-	onHide,
-	show,
-	title,
-}: ModalProps) => {
+export const Modal = ({ children, onHide, show, title }: ModalProps) => {
 	return (
 		<ReactModal
 			ariaHideApp={false}
 			isOpen={show}
 			onRequestClose={onHide}
-			className={className}
+			className={styles.container}
+			overlayClassName={styles.overlay}
 		>
-			<div onClick={onHide}>X</div>
-			{title && <h2>{title}</h2>}
-			{children}
+			<div className={styles.header}>
+				{title && <h2 className={styles.title}>{title}</h2>}
+
+				<div className={styles.close} onClick={onHide}>
+					X
+				</div>
+			</div>
+
+			<div className={styles.body}>{children}</div>
 		</ReactModal>
 	)
 }
