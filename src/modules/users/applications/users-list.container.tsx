@@ -6,6 +6,7 @@ import { UsersListView } from "@/modules/users/applications/users-list.view"
 
 export const UsersListContainer = () => {
 	const [users, setUsers] = useState<User[]>([])
+	const [usersList, setUsersList] = useState<User[]>([])
 
 	useEffect(() => {
 		_getUsersList()
@@ -18,10 +19,23 @@ export const UsersListContainer = () => {
 			})
 
 			setUsers(users)
+			setUsersList(users)
 		} catch (error) {
 			console.warn(error)
 		}
 	}
 
-	return <UsersListView users={users} />
+	const filterUsers = (filter: string) => {
+		const loweredFilter: string = filter.toLowerCase()
+
+		const filteredUsers: User[] = users.filter(
+			(user: User) =>
+				user.name.toLowerCase().includes(loweredFilter) ||
+				user.email.toLowerCase().includes(loweredFilter)
+		)
+
+		setUsersList(filteredUsers)
+	}
+
+	return <UsersListView usersList={usersList} filterUsers={filterUsers} />
 }

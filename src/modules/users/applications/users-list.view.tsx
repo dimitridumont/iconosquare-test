@@ -1,27 +1,45 @@
 import React from "react"
 import { User } from "@/types/user"
+import { FiltersContainer } from "@/modules/users/applications/components/filters/filters.container"
+import { Link } from "@/components/link/link"
 
 interface Props {
-	users: User[]
+	usersList: User[]
+	filterUsers: (filter: string) => void
 }
 
-export const UsersListView = ({ users }: Props) => {
+export const UsersListView = ({ usersList, filterUsers }: Props) => {
 	return (
-		<div>
-			{users.map((user: User) => (
-				<div key={user.id}>
-					<div>{user.name}</div>
-					<div>
-						<span>{user.address.street}</span>{" "}
-						<span>{user.address.city}</span>
+		<>
+			<FiltersContainer filterUsers={filterUsers} />
+
+			<div>
+				{usersList.map((user: User) => (
+					<div key={user.id}>
+						<div>
+							<div>{user.name}</div>
+							<div>{user.email}</div>
+						</div>
+						<div>
+							<span>{user.address.street}</span>{" "}
+							<span>{user.address.city}</span>
+						</div>
+						<div>{user.phone}</div>
+						<div>
+							<Link
+								href={user.website}
+								target="_blank"
+								rel="noopener, noreferrer"
+							>
+								{user.website}
+							</Link>
+						</div>
+						<div>
+							<Link href={"/"}>List posts</Link>
+						</div>
 					</div>
-					<div>{user.phone}</div>
-					<div>{user.website}</div>
-					<div>
-						<button>List posts</button>
-					</div>
-				</div>
-			))}
-		</div>
+				))}
+			</div>
+		</>
 	)
 }
