@@ -1,0 +1,16 @@
+@import "src/styles/variables";
+
+.input {
+  width: calc(100% - 32px);
+  background-color: $white;
+  border: 1px solid $light-grey;
+  border-radius: $border-radius;
+  margin-bottom: 32px;
+  padding: 16px;
+  color: $dark-blue;
+  font-size: 16px;
+
+  &:focus {
+    border: 1px solid $light-grey;
+  }
+}
