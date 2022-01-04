@@ -5,6 +5,7 @@ import { getUserPosts } from "@/modules/posts/domain/posts.actions"
 import { useRouter } from "next/router"
 import { User } from "@/types/user"
 import { getUser } from "@/modules/users/domain/users.actions"
+import { UserPostsView } from "@/modules/posts/application/user-posts.view"
 
 export const UserPostsContainer = () => {
 	const router = useRouter()
@@ -51,19 +52,5 @@ export const UserPostsContainer = () => {
 		}
 	}
 
-	return (
-		<>
-			<h2>{user && `${user.name}'s posts`}</h2>
-
-			<div>
-				{posts.map((post: Post) => (
-					<div key={post.id}>
-						<h3>{post.title}</h3>
-
-						<div>{post.body}</div>
-					</div>
-				))}
-			</div>
-		</>
-	)
+	return <UserPostsView user={user} posts={posts} />
 }
