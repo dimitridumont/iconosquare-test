@@ -44,11 +44,13 @@ export const UserPostsView = ({
 				thereIsNoData={thereIsNoUser}
 				messages={getUserMessages}
 			>
-				<h2 className={styles.title}>
-					{user && `${user.name}'s posts`}
-				</h2>
+				<div className={styles.header}>
+					<h2 className={styles.title}>
+						{user && `${user.name}'s posts`}
+					</h2>
 
-				<CreatePostModalContainer />
+					<CreatePostModalContainer />
+				</div>
 			</DisplayAsyncData>
 
 			<DisplayAsyncData
