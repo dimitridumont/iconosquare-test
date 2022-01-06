@@ -65,6 +65,10 @@ export const UserPostsContainer = () => {
 		}
 	}
 
+	const addNewPost = (post: Post) => {
+		setPosts((prev) => [...prev, post])
+	}
+
 	const thereIsNoPost: boolean =
 		getPostsStatus === RequestStatus.COMPLETED && posts.length === 0
 
@@ -79,6 +83,7 @@ export const UserPostsContainer = () => {
 			getPostsStatus={getPostsStatus}
 			thereIsNoUser={thereIsNoUser}
 			getUserStatus={getUserStatus}
+			addNewPost={addNewPost}
 		/>
 	)
 }
