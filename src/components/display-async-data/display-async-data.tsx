@@ -26,7 +26,7 @@ export const DisplayAsyncData = ({
 	const render = (): ReactElement => {
 		switch (status) {
 			case RequestStatus.LOADING:
-				return <Loader />
+				return <Loader color={"blue"} />
 			case RequestStatus.COMPLETED:
 				return <>{thereIsNoData ? emptyDataMessage : children}</>
 			case RequestStatus.FAILED:

@@ -4,7 +4,6 @@ import styles from "./create-post-modal.module.scss"
 import { Button } from "@/components/button/button"
 import { RequestStatus } from "@/types/request-status"
 import { ErrorMessage } from "@/components/error-message/error-message"
-import { Loader } from "@/components/loader/loader"
 
 interface Props {
 	isVisible: boolean
@@ -72,12 +71,14 @@ export const CreatePostModalView = ({
 						>
 							Cancel
 						</Button>
-						<Button className={styles.create}>
-							{createPostStatus === RequestStatus.LOADING ? (
-								<Loader />
-							) : (
-								"Create"
-							)}
+						<Button
+							disabled={
+								createPostStatus === RequestStatus.LOADING
+							}
+						>
+							{createPostStatus === RequestStatus.LOADING
+								? "Loading ..."
+								: "Create"}
 						</Button>
 					</div>
 				</form>

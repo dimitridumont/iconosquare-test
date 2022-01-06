@@ -9,6 +9,12 @@
   color: $white;
   font-weight: 600;
 
+  &:disabled {
+    border-color: $light-grey;
+    background-color: $light-grey;
+    color: $dark-blue;
+  }
+
   &.secondary {
     border: 1px solid $dark-blue;
     background-color: $white;
