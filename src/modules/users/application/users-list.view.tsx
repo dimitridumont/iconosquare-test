@@ -28,14 +28,20 @@ export const UsersListView = ({
 	}
 
 	return (
-		<DisplayAsyncData
-			thereIsNoData={thereIsNoUser}
-			messages={messages}
-			status={getUsersStatus}
-		>
-			<>
+		<>
+			<DisplayAsyncData
+				thereIsNoData={false}
+				messages={messages}
+				status={getUsersStatus}
+			>
 				<FiltersContainer filterUsers={filterUsers} />
+			</DisplayAsyncData>
 
+			<DisplayAsyncData
+				thereIsNoData={thereIsNoUser}
+				messages={messages}
+				status={getUsersStatus}
+			>
 				<div className={styles.container}>
 					<table className={styles.table}>
 						<thead>
@@ -101,7 +107,7 @@ export const UsersListView = ({
 						</tbody>
 					</table>
 				</div>
-			</>
-		</DisplayAsyncData>
+			</DisplayAsyncData>
+		</>
 	)
 }
