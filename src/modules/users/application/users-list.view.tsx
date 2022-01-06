@@ -39,18 +39,18 @@ export const UsersListView = ({
 				<div className={styles.container}>
 					<table className={styles.table}>
 						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Address</th>
-								<th>Phone</th>
-								<th>Website</th>
-								<th>Edit</th>
+							<tr className={styles.row}>
+								<th className={styles.headerCell}>Name</th>
+								<th className={styles.headerCell}>Address</th>
+								<th className={styles.headerCell}>Phone</th>
+								<th className={styles.headerCell}>Website</th>
+								<th className={styles.headerCell}>Edit</th>
 							</tr>
 						</thead>
 						<tbody>
 							{usersList.map((user: User) => (
-								<tr key={user.id}>
-									<td>
+								<tr key={user.id} className={styles.row}>
+									<td className={styles.cell}>
 										<div className={styles.userName}>
 											{user.name}
 										</div>
@@ -63,15 +63,17 @@ export const UsersListView = ({
 											</Link>
 										</div>
 									</td>
-									<td>
+									<td className={styles.cell}>
 										<span>{user.address.street}</span>
 										{", "}
 										<span className={styles.userCity}>
 											{user.address.city}
 										</span>
 									</td>
-									<td>{user.phone}</td>
-									<td>
+									<td className={styles.cell}>
+										{user.phone}
+									</td>
+									<td className={styles.cell}>
 										<Link
 											href={user.website}
 											target="_blank"
@@ -80,7 +82,13 @@ export const UsersListView = ({
 											{user.website}
 										</Link>
 									</td>
-									<td>
+									<td
+										className={
+											styles.cell +
+											" " +
+											styles.actionCell
+										}
+									>
 										<Link
 											href={`/users/${user.id}`}
 											variant={"button"}
